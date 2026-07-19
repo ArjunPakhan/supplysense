@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 SupplySense Module 5: Minimal Single-Page Dashboard
-Three sections: supplier risk table, stockout/demand alerts, NL query box.
+Four sections: executive summary, supplier risk table, stockout/demand
+alerts, NL query box.
 Run with: streamlit run dashboard.py
 """
 
@@ -48,12 +49,15 @@ if "exec_summary" not in st.session_state:
     with st.spinner("Generating executive summary..."):
         st.session_state.exec_summary = generate_executive_summary()
 
-st.write(st.session_state.exec_summary)
+with st.container(border=True):
+    st.write(st.session_state.exec_summary)
 
 if st.button("Regenerate"):
     with st.spinner("Generating executive summary..."):
         st.session_state.exec_summary = generate_executive_summary()
     st.rerun()
+
+st.divider()
 
 # ============================================================================
 # SECTION 1: SUPPLIER RISK
@@ -65,6 +69,13 @@ supplier_risk = load_csv("supplier_risk_scores.csv").sort_values(
     "hybrid_risk_score", ascending=False
 )
 
+tier_counts = supplier_risk["risk_tier"].value_counts()
+m1, m2, m3, m4 = st.columns(4)
+m1.metric("🔴 Critical", int(tier_counts.get("Critical", 0)))
+m2.metric("🟠 High", int(tier_counts.get("High", 0)))
+m3.metric("🟡 Medium", int(tier_counts.get("Medium", 0)))
+m4.metric("🟢 Low", int(tier_counts.get("Low", 0)))
+
 st.dataframe(
     supplier_risk[[
         "supplier_id", "supplier_name", "risk_tier", "hybrid_risk_score",
@@ -74,17 +85,30 @@ st.dataframe(
     hide_index=True,
 )
 
+st.divider()
+
 # ============================================================================
 # SECTION 2: STOCKOUT & DEMAND ALERTS
 # ============================================================================
 
 st.header("2. Stockout & Demand Alerts")
 
+stockout = load_csv("stockout_risk.csv")
+demand = load_csv("demand_spikes.csv")
+
+urgency_counts = stockout["stockout_urgency"].value_counts()
+spike_count = int((demand["is_spike"] == True).sum())  # noqa: E712
+
+s1, s2, s3, s4 = st.columns(4)
+s1.metric("🔴 Critical Stockouts", int(urgency_counts.get("Critical", 0)))
+s2.metric("🟠 Reorder Now", int(urgency_counts.get("Reorder Now", 0)))
+s3.metric("🟡 Watch", int(urgency_counts.get("Watch", 0)))
+s4.metric("📈 Demand Spikes", spike_count)
+
 col1, col2 = st.columns(2)
 
 with col1:
     st.subheader("Stockout Risk (Reorder Now / Critical)")
-    stockout = load_csv("stockout_risk.csv")
     urgent = stockout[stockout["stockout_urgency"].isin(["Reorder Now", "Critical"])].sort_values(
         "stockout_risk_score", ascending=False
     )
@@ -102,7 +126,6 @@ with col1:
 
 with col2:
     st.subheader("Demand Spikes")
-    demand = load_csv("demand_spikes.csv")
     spikes = demand[demand["is_spike"] == True].sort_values(  # noqa: E712
         "pct_increase", ascending=False
     )
@@ -115,6 +138,8 @@ with col2:
             width='stretch',
             hide_index=True,
         )
+
+st.divider()
 
 # ============================================================================
 # SECTION 3: ASK SUPPLYSENSE
@@ -132,9 +157,10 @@ if st.button("Ask", type="primary") and question.strip():
         answer, trail = ask(question, verbose=False)
 
     st.markdown("**Answer:**")
-    st.write(answer)
+    with st.container(border=True):
+        st.write(answer)
 
-    with st.expander(f"Reasoning trail ({len(trail)} tool call(s))"):
+    with st.expander(f"🔍 Reasoning trail ({len(trail)} tool call(s))"):
         if not trail:
             st.write("No tool calls were made for this answer.")
         for i, step in enumerate(trail, 1):
