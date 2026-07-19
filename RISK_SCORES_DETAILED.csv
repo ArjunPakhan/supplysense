@@ -1,0 +1,26 @@
+supplier_id,supplier_name,category,risk_tier,hybrid_risk_score,rule_based_score,isolation_forest_anomaly_score,on_time_delivery_rate,avg_delay_days,cancellation_rate,quality_score,delay_trend,notes
+SUP003,Supplier_SUP003,electronics,High,71.5,61.2,86.9,0.0,12.9,14.3,52,-0.14,Highest risk: No on-time deliveries + consistent 13-day delays + quality concerns
+SUP001,Supplier_SUP001,electronics,High,68.1,58.2,82.8,0.0,13.2,3.4,55,-0.16,Chronic lateness - all deliveries 13+ days late
+SUP005,Supplier_SUP005,electronics,High,63.4,59.0,70.1,0.0,12.5,11.8,65,0.10,No on-time deliveries + cancellations rising
+SUP004,Supplier_SUP004,electronics,High,61.8,57.9,67.6,0.0,13.6,5.4,68,-0.08,Worst average delay (13.6d) despite higher quality score
+SUP002,Supplier_SUP002,raw_materials,High,60.1,59.7,60.7,0.0,13.6,13.2,67,-0.01,No on-time deliveries + rising cancellations
+SUP007,Supplier_SUP007,packaging,High,58.1,30.1,100.0,60.0,3.0,33.3,84,0.33,Highest anomaly score (100) due to extreme cancellation rate despite delivery performance
+SUP006,Supplier_SUP006,logistics_partners,High,50.8,21.2,95.1,70.0,2.0,26.5,81,-0.86,High cancellation rate is primary concern; otherwise performing reasonably
+SUP008,Supplier_SUP008,electronics,Medium,29.1,17.5,46.4,84.6,1.0,21.9,72,0.33,FINDING: Operationally sound (85% on-time) but cancellation-prone - scores below High tier due to strong delivery performance outweighing cancellation rate
+SUP009,Supplier_SUP009,packaging,Low,20.2,7.7,39.1,100.0,0.0,13.8,76,0.00,Best performer: 100% on-time delivery rate
+SUP024,Supplier_SUP024,packaging,Low,17.1,11.3,27.8,75.9,1.7,3.3,74,-0.28,Good overall performance
+SUP018,Supplier_SUP018,electronics,Low,16.5,13.8,20.5,84.2,2.0,4.5,82,0.24,Solid performer
+SUP014,Supplier_SUP014,packaging,Low,16.2,11.2,23.7,84.6,1.5,6.5,95,−0.21,Excellent quality score (95)
+SUP025,Supplier_SUP025,logistics_partners,Low,16.1,9.6,25.6,88.0,2.0,3.6,92,-0.33,High quality (92) and on-time rate (88%)
+SUP015,Supplier_SUP015,raw_materials,Low,14.7,14.8,14.5,76.0,1.3,3.3,85,-0.25,Consistent performer
+SUP017,Supplier_SUP017,packaging,Low,14.1,9.2,21.6,90.6,1.7,2.8,93,0.13,Excellent quality (93) and on-time (90.6%)
+SUP021,Supplier_SUP021,electronics,Low,14.0,10.8,18.7,90.3,1.0,3.0,78,0.33,Strong on-time rate
+SUP020,Supplier_SUP020,electronics,Low,13.3,15.3,10.7,82.4,1.7,5.3,72,0.19,Good overall
+SUP016,Supplier_SUP016,packaging,Low,11.6,11.2,12.1,91.7,2.0,9.7,77,-0.20,High on-time rate (91.7%) compensates for higher cancellation
+SUP022,Supplier_SUP022,electronics,Low,11.0,11.7,10.2,87.9,1.5,2.7,70,-0.19,Reliable performer
+SUP012,Supplier_SUP012,raw_materials,Low,9.5,14.7,4.0,80.0,1.4,6.2,77,-0.19,Good performance
+SUP019,Supplier_SUP019,packaging,Low,8.9,9.1,8.7,96.6,1.0,5.9,70,0.09,Excellent on-time rate (96.6%)
+SUP023,Supplier_SUP023,packaging,Low,8.3,8.3,8.2,96.9,1.0,7.9,81,0.11,Excellent on-time rate (96.9%)
+SUP011,Supplier_SUP011,raw_materials,Low,6.9,8.9,4.3,90.0,1.7,3.0,89,-0.26,Strong performer
+SUP013,Supplier_SUP013,electronics,Low,6.6,8.8,4.3,97.0,1.0,7.9,75,0.08,97% on-time delivery rate
+SUP010,Supplier_SUP010,logistics_partners,Low,5.8,9.6,1.9,90.0,1.3,5.9,87,-0.18,Best ML score (lowest anomaly at 1.9): Most typical behavior

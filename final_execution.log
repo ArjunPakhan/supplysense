@@ -1,0 +1,178 @@
+
+================================================================================
+SUPPLYSENSE MODULE 2: SUPPLIER RISK ENGINE
+================================================================================
+Loading data files...
+  - Loaded 25 suppliers
+  - Loaded 800 purchase orders
+  - Loaded 730 shipments
+
+Computing rule-based features...
+  - Computed features for 25 suppliers
+
+Computing rule-based composite scores...
+
+Applying Isolation Forest anomaly detection...
+
+Computing hybrid risk scores...
+
+Generating output...
+  - Saved data\supplier_risk_scores.csv
+
+================================================================================
+FULL SUPPLIER RISK SCORE SUMMARY
+================================================================================
+
+
+HIGH RISK SUPPLIERS (7):
+--------------------------------------------------------------------------------
+SUP003 | Supplier_SUP003                | Score:   71.5 | OnTime:   0.0% | Delay:  12.9d | Cancel:  14.3%
+SUP001 | Supplier_SUP001                | Score:   68.1 | OnTime:   0.0% | Delay:  13.2d | Cancel:   3.4%
+SUP005 | Supplier_SUP005                | Score:   63.4 | OnTime:   0.0% | Delay:  12.5d | Cancel:  11.8%
+SUP004 | Supplier_SUP004                | Score:   61.8 | OnTime:   0.0% | Delay:  13.6d | Cancel:   5.4%
+SUP002 | Supplier_SUP002                | Score:   60.1 | OnTime:   0.0% | Delay:  13.6d | Cancel:  13.2%
+SUP007 | Supplier_SUP007                | Score:   58.1 | OnTime:  60.0% | Delay:   3.0d | Cancel:  33.3%
+SUP006 | Supplier_SUP006                | Score:   50.8 | OnTime:  70.0% | Delay:   2.0d | Cancel:  26.5%
+
+MEDIUM RISK SUPPLIERS (1):
+--------------------------------------------------------------------------------
+SUP008 | Supplier_SUP008                | Score:   29.1 | OnTime:  84.6% | Delay:   1.0d | Cancel:  21.9%
+
+LOW RISK SUPPLIERS (17):
+--------------------------------------------------------------------------------
+SUP009 | Supplier_SUP009                | Score:   20.2 | OnTime: 100.0% | Delay:   0.0d | Cancel:  13.8%
+SUP024 | Supplier_SUP024                | Score:   17.1 | OnTime:  75.9% | Delay:   1.7d | Cancel:   3.3%
+SUP018 | Supplier_SUP018                | Score:   16.5 | OnTime:  84.2% | Delay:   2.0d | Cancel:   4.5%
+SUP014 | Supplier_SUP014                | Score:   16.2 | OnTime:  84.6% | Delay:   1.5d | Cancel:   6.5%
+SUP025 | Supplier_SUP025                | Score:   16.1 | OnTime:  88.0% | Delay:   2.0d | Cancel:   3.6%
+SUP015 | Supplier_SUP015                | Score:   14.7 | OnTime:  76.0% | Delay:   1.3d | Cancel:   3.3%
+SUP017 | Supplier_SUP017                | Score:   14.1 | OnTime:  90.6% | Delay:   1.7d | Cancel:   2.8%
+SUP021 | Supplier_SUP021                | Score:   14.0 | OnTime:  90.3% | Delay:   1.0d | Cancel:   3.0%
+SUP020 | Supplier_SUP020                | Score:   13.3 | OnTime:  82.4% | Delay:   1.7d | Cancel:   5.3%
+SUP016 | Supplier_SUP016                | Score:   11.6 | OnTime:  91.7% | Delay:   2.0d | Cancel:   9.7%
+SUP022 | Supplier_SUP022                | Score:   11.0 | OnTime:  87.9% | Delay:   1.5d | Cancel:   2.7%
+SUP012 | Supplier_SUP012                | Score:    9.5 | OnTime:  80.0% | Delay:   1.4d | Cancel:   6.2%
+SUP019 | Supplier_SUP019                | Score:    8.9 | OnTime:  96.6% | Delay:   1.0d | Cancel:   5.9%
+SUP023 | Supplier_SUP023                | Score:    8.3 | OnTime:  96.9% | Delay:   1.0d | Cancel:   7.9%
+SUP011 | Supplier_SUP011                | Score:    6.9 | OnTime:  90.0% | Delay:   1.7d | Cancel:   3.0%
+SUP013 | Supplier_SUP013                | Score:    6.6 | OnTime:  97.0% | Delay:   1.0d | Cancel:   7.9%
+SUP010 | Supplier_SUP010                | Score:    5.8 | OnTime:  90.0% | Delay:   1.3d | Cancel:   5.9%
+
+================================================================================
+
+================================================================================
+VALIDATION: KNOWN-BAD SUPPLIERS
+================================================================================
+
+Expected High/Critical Risk: SUP001-SUP005 (chronic lateness)
+                            SUP006-SUP008 (declining quality)
+
+SUP001 (Supplier_SUP001):
+  On-Time Rate:       0.0%
+  Avg Delay Days:     13.2
+  Cancellation Rate:  3.4%
+  Quality Score:      55.0/100
+  Delay Trend:        -0.163
+  Rule-Based Score:   58.2
+  Anomaly Score:      82.8
+  Hybrid Risk Score:  68.1
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP002 (Supplier_SUP002):
+  On-Time Rate:       0.0%
+  Avg Delay Days:     13.6
+  Cancellation Rate:  13.2%
+  Quality Score:      67.0/100
+  Delay Trend:        -0.010
+  Rule-Based Score:   59.7
+  Anomaly Score:      60.7
+  Hybrid Risk Score:  60.1
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP003 (Supplier_SUP003):
+  On-Time Rate:       0.0%
+  Avg Delay Days:     12.9
+  Cancellation Rate:  14.3%
+  Quality Score:      52.0/100
+  Delay Trend:        0.139
+  Rule-Based Score:   61.2
+  Anomaly Score:      86.9
+  Hybrid Risk Score:  71.5
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP004 (Supplier_SUP004):
+  On-Time Rate:       0.0%
+  Avg Delay Days:     13.6
+  Cancellation Rate:  5.4%
+  Quality Score:      68.0/100
+  Delay Trend:        -0.083
+  Rule-Based Score:   57.9
+  Anomaly Score:      67.6
+  Hybrid Risk Score:  61.8
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP005 (Supplier_SUP005):
+  On-Time Rate:       0.0%
+  Avg Delay Days:     12.5
+  Cancellation Rate:  11.8%
+  Quality Score:      65.0/100
+  Delay Trend:        0.104
+  Rule-Based Score:   59.0
+  Anomaly Score:      70.1
+  Hybrid Risk Score:  63.4
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP006 (Supplier_SUP006):
+  On-Time Rate:       70.0%
+  Avg Delay Days:     2.0
+  Cancellation Rate:  26.5%
+  Quality Score:      81.0/100
+  Delay Trend:        -0.857
+  Rule-Based Score:   21.2
+  Anomaly Score:      95.1
+  Hybrid Risk Score:  50.8
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP007 (Supplier_SUP007):
+  On-Time Rate:       60.0%
+  Avg Delay Days:     3.0
+  Cancellation Rate:  33.3%
+  Quality Score:      84.0/100
+  Delay Trend:        0.333
+  Rule-Based Score:   30.1
+  Anomaly Score:      100.0
+  Hybrid Risk Score:  58.1
+  Risk Tier:          High
+  [OK] Correctly flagged as High
+
+SUP008 (Supplier_SUP008):
+  On-Time Rate:       84.6%
+  Avg Delay Days:     1.0
+  Cancellation Rate:  21.9%
+  Quality Score:      72.0/100
+  Delay Trend:        0.333
+  Rule-Based Score:   17.5
+  Anomaly Score:      46.4
+  Hybrid Risk Score:  29.1
+  Risk Tier:          Medium
+  [WARNING] BELOW HIGH TIER - Should be High/Critical but scored as Medium
+
+================================================================================
+VALIDATION FINDINGS:
+  - SUP008: [WARNING] BELOW HIGH TIER - Should be High/Critical but scored as Medium
+================================================================================
+
+================================================================================
+RISK ENGINE EXECUTION COMPLETE
+================================================================================
+
+Output file: data\supplier_risk_scores.csv
+Total suppliers scored: 25
+Validation status: ISSUES FOUND
+
