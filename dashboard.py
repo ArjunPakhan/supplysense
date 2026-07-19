@@ -9,6 +9,7 @@ import pandas as pd
 import streamlit as st
 
 from query_agent import ask
+from exec_summary import generate_executive_summary
 
 DATA_DIR = "data"
 
@@ -36,6 +37,23 @@ def load_csv(name):
 
 st.title("SupplySense")
 st.caption("AI Supply Chain Risk & Inventory Intelligence")
+
+# ============================================================================
+# SECTION 0: EXECUTIVE SUMMARY
+# ============================================================================
+
+st.header("Executive Summary")
+
+if "exec_summary" not in st.session_state:
+    with st.spinner("Generating executive summary..."):
+        st.session_state.exec_summary = generate_executive_summary()
+
+st.write(st.session_state.exec_summary)
+
+if st.button("Regenerate"):
+    with st.spinner("Generating executive summary..."):
+        st.session_state.exec_summary = generate_executive_summary()
+    st.rerun()
 
 # ============================================================================
 # SECTION 1: SUPPLIER RISK
